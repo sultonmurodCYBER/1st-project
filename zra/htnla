@@ -1,0 +1,173 @@
+zar7:
+npx create-react-app react-exam-app
+cd react-exam-app
+npm install bootstrap react-bootstrap bootstrap-icons
+zar7:
+npx create-react-app react-exam-app
+cd react-exam-app
+npm install bootstrap react-bootstrap bootstrap-icons
+
+zar7:
+import React from 'react'; import 'bootstrap/dist/css/bootstrap.min.css'; import 'bootstrap-icons/font/bootstrap-icons.css'; import { Navbar, Container, Nav, Card, Row, Col } from 'react-bootstrap';
+function App() { const images = [ { id: 1, title: 'Rasm 1', src: 'https://via.placeholder.com/300x200?text=Rasm+1' }, { id: 2, title: 'Rasm 2', src: 'https://via.placeholder.com/300x200?text=Rasm+2' }, { id: 3, title: 'Rasm 3', src: 'https://via.placeholder.com/300x200?text=Rasm+3' }, ];
+return ( <div> {/* 9-topshiriq: Navbar /} <Navbar bg="dark" variant="dark" expand="lg"> <Container> <Navbar.Brand href="#home"> <i class="bi bi-code-slash me-2"></i> {/ 10-topshiriq: Ikonka */} Mening Saytim </Navbar.Brand> <Nav className="me-auto"> <Nav.Link href="#home">Bosh sahifa</Nav.Link> <Nav.Link href="#gallery">Galereya</Nav.Link> </Nav> </Container> </Navbar>
+
+  {/* 9 & 10-topshiriq: O'rta qismida rasmlardan iborat kichik sayt & Bootstrap elementlari */}
+  <Container className="my-4">
+    <h2 className="text-center mb-4">
+      <i class="bi bi-images me-2"></i>Rasm Galereyasi
+    </h2>
+    <Row>
+      {images.map((item) => (
+        <Col key={item.id} md={4} className="mb-3">
+          <Card>
+            <Card.Img variant="top" src={item.src} />
+            <Card.Body>
+              <Card.Title>{item.title}</Card.Title>
+              <Card.Text>
+                Bootstrap va React ikonkalari yordamida yaratilgan kartochka.
+              </Card.Text>
+              <button className="btn btn-primary">
+                <i class="bi bi-eye me-1"></i> Ko'rish
+              </button>
+            </Card.Body>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  </Container>
+</div>
+); }
+export default App;
+!-- 2. Morris.js chiziqli diagramma -->
+    <div class="section">
+        <h3>2) Morris.js Chiziqli Diagramma</h3>
+        <div id="morris-line-chart" style="height: 250px;"></div>
+    </div>
+
+    <!-- 3. CanvasJS aylanali diagramma -->
+    <div class="section">
+        <h3>3) CanvasJS Aylanali Diagramma</h3>
+        <div id="canvasjs-pie-chart" style="height: 300px; width: 100%;"></div>
+    </div>
+
+    <!-- 4. Input audio ijro -->
+    <div class="section">
+        <h3>4) Qo'shiqchi yoki qo'shiq nomi kiritilganda audio ijro</h3>
+        <input type="text" id="musicInput" placeholder="Masalan: track1">
+        <audio id="audioPlayer" controls style="margin-top:10px; display:block;">
+            <source id="audioSource" src="" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- 5, 6, 7. jQuery animatsiyalar -->
+    <div class="section">
+        <h3>5, 6, 7) jQuery Rasm Animatsiyalari</h3>
+        <button id="btnFadeOut">Sekin yo'q bo'lsin (5)</button>
+        <button id="btnFadeIn">Sekin paydo bo'lsin (6)</button>
+        <button id="btnToggle">Yo'q / Paydo bo'lsin (7)</button>
+        <br><br>
+        <img id="target-img" src="https://via.placeholder.com/200" alt="Test Rasm">
+    </div>
+
+    <!-- 11. Hisoblagich tugmalari -->
+    <div class="section">
+        <h3>11) Hisoblagich (Counter)</h3>
+        <h2 id="counterVal">0</h2>
+        <button id="btnInc">1-tugma (+1)</button>
+        <button id="btnDec">2-tugma (-1)</button>
+        <button id="btnReset">3-tugma (0 ga qaytarish)</button>
+    </div>
+
+    <script>
+        $(document.body).ready(function () {
+
+            // 1-topshiriq
+            $('#toRight').click(function () {
+                $('#leftSelect option:selected').appendTo('#rightSelect');
+            });
+            $('#toLeft').click(function () {
+                $('#rightSelect option:selected').appendTo('#leftSelect');
+            });
+
+            // 2-topshiriq: Morris Line Chart
+            Morris.Line({
+                element: 'morris-line-chart',
+                data: [
+                    { year: '2021', value: 10 },
+                    { year: '2022', value: 20 },
+                    { year: '2023', value: 15 },
+                    { year: '2024', value: 25 }
+                ],
+                xkey: 'year',
+                ykeys: ['value'],
+                labels: ['Qiymat']
+            });
+
+            // 3-topshiriq: CanvasJS Pie Chart
+            var chart = new CanvasJS.Chart("canvasjs-pie-chart", {
+                animationEnabled: true,
+                title: { text: "Aylanali Diagramma" },
+                data: [{
+                    type: "pie",
+                    startAngle: 240,
+                    dataPoints: [
+                        { y: 40, label: "HTML/CSS" },
+                        { y: 30, label: "JavaScript" },
+                        { y: 20, label: "React" },
+                        { y: 10, label: "Boshqalar" }
+                    ]
+                }]
+            });
+            chart.render();
+
+            // 4-topshiriq: Musiqa chalish
+            $('#musicInput').
+
+            
+            on('input', function () {
+                var val = $(this).val().trim();
+                if (val.length > 2) {
+                    // Namuna sifatida har qanday audio fayl havola qilinadi
+                    $('#audioSource').attr('src', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+                    var player = $('#audioPlayer')[0];
+                    player.load();
+                    player.play();
+                }
+            });
+
+            // 5-topshiriq: FadeOut
+            $('#btnFadeOut').click(function () {
+                $('#target-img').fadeOut('slow');
+            });
+
+            // 6-topshiriq: FadeIn
+            $('#btnFadeIn').click(function () {
+                $('#target-img').fadeIn('slow');
+            });
+
+            // 7-topshiriq: Toggle
+            $('#btnToggle').click(function () {
+                $('#target-img').fadeToggle('slow');
+            });
+
+            // 11-topshiriq: Hisoblagich
+            let count = 0;
+            $('#btnInc').click(function () {
+                count++;
+                $('#counterVal').text(count);
+            });
+            $('#btnDec').click(function () {
+                count--;
+                $('#counterVal').text(count);
+            });
+            $('#btnReset').click(function () {
+                count = 0;
+                $('#counterVal').text(count);
+            });
+
+        });
+    </script>
+</body>
+
+</html>
